@@ -34,7 +34,7 @@ This walkthrough demonstrates some basic scans using Nmap on Kali Linux against 
 </p>
 
 <p>
-2. Before the Windows XP ISO is scanned by NMAP, we need to identify the IP address of the Windows XP virtual machine. To find the IP address, on the Windows XP VM, go to "Start", then "Run". In the terminnal lime, type ipconfig to receive the IP address.
+2. Before the Windows XP ISO is scanned by NMAP, we need to identify the IP address of the Windows XP virtual machine. To find the IP address, on the Windows XP VM, go to "Start", then "Run". In the terminal lime, type ipconfig to receive the IP address.
 
 </p>
 <br />
@@ -49,3 +49,9 @@ This walkthrough demonstrates some basic scans using Nmap on Kali Linux against 
 
 4. When analyzing the results from the Nmap scan, we can see some vulnerabilities in the Windows XP VM. First, there is the vulnerability of Microsoft Windows RPC that runs on TCP port 135.  Windows RPC is 
 susceptible to buffer overflow attacks and malware such as trojan horses, and worms. Additionally, Microsoft XP -ds over TCP 445 is another  vulnerable service. SMB allows for the execution of arbitrary commands over a network. 
+
+<p>
+<img src="https://imgur.com/IZqiDYL.png" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+
+5. Next, the command -sA can be used to detect firewall rules by sending ACK messages to the target host. If this specific scan returns an RST packet, then the port is closed and no services are listening on that port. If the target host returns a SYN/ACK, then the port is open a service is listening on the host. Additionally, if no response is returned by the scan, then the port is filtered by the firewall. According to the scan done against the Windows XP VM, the host is down which means that ports are most likely being blocked by its firewall.
